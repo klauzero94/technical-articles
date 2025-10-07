@@ -1,6 +1,8 @@
-<div style="background-color: #ffffff; color: #000000; padding: 20px;">
+# Engenharia Reversa de Códigos de Erro
 
-# Engenharia Reversa de Códigos de Erro: Sistema Determinístico para Rastreamento de Origem
+## Sistema Determinístico para Rastreamento de Origem
+
+---
 
 ## Resumo
 
@@ -33,10 +35,12 @@ graph TB
 
 ### 1.3 Contribuições
 
-1. **Algoritmo de geração** de identificadores determinísticos
-2. **Método de engenharia reversa** para reconstrução de contexto
-3. **Análise de complexidade** computacional e limitações
-4. **Avaliação de casos de uso** e cenários de aplicação
+> **Principais contribuições desta metodologia:**
+>
+> 1. **Algoritmo de geração** de identificadores determinísticos
+> 2. **Método de engenharia reversa** para reconstrução de contexto
+> 3. **Análise de complexidade** computacional e limitações
+> 4. **Avaliação de casos de uso** e cenários de aplicação
 
 ---
 
@@ -44,11 +48,11 @@ graph TB
 
 ### 2.1 Conceitos Básicos
 
-**Contexto de Execução:** Informações disponíveis no momento da exceção (namespace, tipo de erro).
-
-**Identificador Determinístico:** Hash gerado a partir do contexto que sempre produz o mesmo resultado para o mesmo contexto.
-
-**Engenharia Reversa:** Processo de reconstrução do contexto original a partir do identificador.
+| Conceito                         | Definição                                                                                  |
+| -------------------------------- | ------------------------------------------------------------------------------------------ |
+| **Contexto de Execução**         | Informações disponíveis no momento da exceção (namespace, tipo de erro)                    |
+| **Identificador Determinístico** | Hash gerado a partir do contexto que sempre produz o mesmo resultado para o mesmo contexto |
+| **Engenharia Reversa**           | Processo de reconstrução do contexto original a partir do identificador                    |
 
 ### 2.2 Propriedades do Sistema
 
@@ -70,9 +74,13 @@ graph TD
 
 O mesmo contexto sempre gera o mesmo identificador, garantindo consistência entre execuções.
 
+---
+
 #### Reversibilidade
 
 Dado um identificador, é possível encontrar o contexto que o gerou através de busca exaustiva no espaço de possibilidades.
+
+---
 
 #### Eficiência
 
@@ -85,7 +93,9 @@ Dado um identificador, é possível encontrar o contexto que o gerou através de
 
 ### 3.1 Visão Geral
 
-O sistema opera através de duas fases temporalmente separadas, permitindo otimização independente de cada etapa:
+> **Operação em Duas Fases**
+>
+> O sistema opera através de duas fases temporalmente separadas, permitindo otimização independente de cada etapa:
 
 ```mermaid
 graph TB
@@ -114,16 +124,18 @@ graph TB
 
 #### Gerador de Identificadores
 
-Responsável pela transformação do contexto de execução em identificador único:
+**Responsável pela transformação do contexto de execução em identificador único:**
 
 - Extrai informações do stack trace
 - Normaliza dados contextuais
 - Aplica função hash criptográfica
 - Formata identificador final
 
+---
+
 #### Analisador Reverso
 
-Executa o processo de reconstrução da origem:
+**Executa o processo de reconstrução da origem:**
 
 - Enumera todos os namespaces conhecidos
 - Gera hashes para cada possibilidade
@@ -194,11 +206,13 @@ graph TD
     H --> D
 ```
 
-**Complexidade:**
+**Análise de Complexidade:**
 
-- **Espaço:** O(k) onde k é o número de namespaces únicos
-- **Tempo:** O(k) para análise completa
-- **Precisão:** Dependente da unicidade dos hashes no domínio
+| Métrica      | Valor    | Descrição                          |
+| ------------ | -------- | ---------------------------------- |
+| **Espaço**   | `O(k)`   | k = número de namespaces únicos    |
+| **Tempo**    | `O(k)`   | Análise completa                   |
+| **Precisão** | Variável | Dependente da unicidade dos hashes |
 
 ---
 
@@ -239,11 +253,15 @@ mindmap
 - **Impacto:** Múltiplos métodos no mesmo namespace geram códigos idênticos
 - **Mitigação:** Uso em conjunto com logs detalhados
 
+---
+
 #### Colisões de Hash
 
 - **Limitação:** Possibilidade teórica de hashes idênticos para contextos diferentes
 - **Probabilidade:** 2^-32 para hash de 32 bits (aproximadamente 1 em 4 bilhões)
 - **Detecção:** Identificação através de múltiplos candidatos
+
+---
 
 #### Dependência de Metadados
 
@@ -259,11 +277,15 @@ mindmap
 - **Consequência:** Perda de rastreabilidade para erros antigos
 - **Solução:** Sistema de versionamento de identificadores
 
+---
+
 #### Degradação de Performance
 
 - **Cenário:** Sistemas com milhares de namespaces
 - **Impacto:** Análise reversa torna-se lenta
 - **Otimização:** Implementação de cache hierárquico
+
+---
 
 #### Ambiguidade de Nomes
 
@@ -309,11 +331,15 @@ graph TB
 - Identificação rápida de origem de erros
 - Correlação de problemas em ambientes distribuídos
 
+---
+
 **Sistemas com Performance Crítica**
 
 - Zero overhead durante execução normal
 - Análise offline de problemas
 - Preservação de recursos computacionais
+
+---
 
 **Ambientes Distribuídos**
 
@@ -329,11 +355,15 @@ graph TB
 - Análise de fluxo de execução complexo
 - Debugging interativo em desenvolvimento
 
+---
+
 **Código Altamente Dinâmico**
 
 - Assemblies gerados em runtime
 - Namespaces que mudam frequentemente
 - Sistemas com estrutura volátil
+
+---
 
 **Sistemas com Muitos Namespaces**
 
@@ -385,21 +415,21 @@ graph LR
 
 ### 7.3 Recomendações de Uso
 
-**Utilize esta metodologia quando:**
+> **Utilize esta metodologia quando:**
+>
+> - Performance é fator crítico
+> - Simplicidade de implementação é prioridade
+> - Rastreamento básico de origem é suficiente
+> - Recursos limitados para ferramentas APM
+> - Ambientes distribuídos sem infraestrutura centralizada
 
-- Performance é fator crítico
-- Simplicidade de implementação é prioridade
-- Rastreamento básico de origem é suficiente
-- Recursos limitados para ferramentas APM
-- Ambientes distribuídos sem infraestrutura centralizada
-
-**Evite esta metodologia quando:**
-
-- Debugging muito detalhado é necessário
-- Código muda estrutura de namespaces frequentemente
-- Análise de fluxo de execução complexo é requerida
-- Sistema possui milhares de namespaces diferentes
-- Precisão ao nível de linha é fundamental
+> **Evite esta metodologia quando:**
+>
+> - Debugging muito detalhado é necessário
+> - Código muda estrutura de namespaces frequentemente
+> - Análise de fluxo de execução complexo é requerida
+> - Sistema possui milhares de namespaces diferentes
+> - Precisão ao nível de linha é fundamental
 
 ---
 
@@ -422,42 +452,56 @@ graph TB
 
 Esta metodologia representa uma abordagem inovadora para o debugging distribuído, estabelecendo novos paradigmas:
 
-**Paradigma da Separação Temporal:** Separação clara entre codificação (runtime) e decodificação (debug), permitindo otimização independente.
+> **Paradigma da Separação Temporal**
+>
+> Separação clara entre codificação (runtime) e decodificação (debug), permitindo otimização independente.
 
-**Paradigma da Informação Mínima:** Máxima informação útil codificada em espaço mínimo, com reconstrução através de conhecimento a priori.
+> **Paradigma da Informação Mínima**
+>
+> Máxima informação útil codificada em espaço mínimo, com reconstrução através de conhecimento a priori.
 
-**Paradigma da Autonomia:** Operação independente sem dependências externas durante execução crítica.
+> **Paradigma da Autonomia**
+>
+> Operação independente sem dependências externas durante execução crítica.
 
 ### 8.2 Impacto e Aplicabilidade
 
-A metodologia demonstra particular valor em:
+**A metodologia demonstra particular valor em:**
 
-- Sistemas com restrições de performance
-- Ambientes distribuídos sem infraestrutura centralizada
-- Cenários com recursos computacionais limitados
-- Aplicações que requerem debugging básico mas eficiente
+- **Sistemas com restrições de performance**
+- **Ambientes distribuídos** sem infraestrutura centralizada
+- **Cenários com recursos computacionais limitados**
+- **Aplicações que requerem debugging básico** mas eficiente
 
 ### 8.3 Limitações Reconhecidas
 
-As limitações identificadas definem claramente os domínios de aplicabilidade:
+**As limitações identificadas definem claramente os domínios de aplicabilidade:**
 
-- Adequada para debugging no nível de namespace
-- Limitada para análise detalhada de fluxo
-- Sensível a mudanças arquiteturais
-- Dependente de estabilidade estrutural
+| Característica                      | Avaliação  |
+| ----------------------------------- | ---------- |
+| **Debugging no nível de namespace** | Adequada   |
+| **Análise detalhada de fluxo**      | Limitada   |
+| **Mudanças arquiteturais**          | Sensível   |
+| **Estabilidade estrutural**         | Dependente |
 
 ### 8.4 Direcionamento Futuro
 
-O framework estabelecido fornece base sólida para:
+**O framework estabelecido fornece base sólida para:**
 
-- Extensões de granularidade
-- Otimizações de performance
-- Integração com tecnologias emergentes
-- Adaptação a novos paradigmas de desenvolvimento
-
-A convergência entre simplicidade, eficiência e determinismo posiciona esta metodologia como contribuição relevante para a evolução das práticas de observabilidade em sistemas modernos.
+- **Extensões de granularidade**
+- **Otimizações de performance**
+- **Integração com tecnologias emergentes**
+- **Adaptação a novos paradigmas de desenvolvimento**
 
 ---
+
+> **Conclusão**
+>
+> A convergência entre simplicidade, eficiência e determinismo posiciona esta metodologia como contribuição relevante para a evolução das práticas de observabilidade em sistemas modernos.
+
+---
+
+<div align="center">
 
 **Autor:** Pablo Perozini de Pra
 
