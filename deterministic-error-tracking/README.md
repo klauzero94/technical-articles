@@ -205,7 +205,7 @@ graph TD
 ### 5.1 Mapa Conceitual de Limitações
 
 ```mermaid
-%%{init: {'mindmap': {'theme': 'base', 'themeVariables': {'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#000000', 'lineColor': '#000000'}}}}%%
+%%{init: {'mindmap': {'theme': 'neutral', 'themeVariables': {'primaryColor': '#f9f9f9', 'primaryTextColor': '#333333', 'primaryBorderColor': '#cccccc', 'lineColor': '#666666', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#e8e8e8'}}}}%%
 mindmap
   root((Limitações))
     Técnicas
