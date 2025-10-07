@@ -358,18 +358,13 @@ graph TB
 
 ## **6.2 Cenários Adequados**
 
-<table>
-<tr>
-<td>
-
 ### **Debugging em Produção**
 
 - Análise de logs sem instrumentação ativa
 - Identificação rápida de origem de erros
 - Correlação de problemas em ambientes distribuídos
 
-</td>
-<td>
+---
 
 ### **Sistemas com Performance Crítica**
 
@@ -377,20 +372,13 @@ graph TB
 - Análise offline de problemas
 - Preservação de recursos computacionais
 
-</td>
-</tr>
-<tr>
-<td colspan="2" align="center">
+---
 
 ### **Ambientes Distribuídos**
 
 - Rastreamento sem dependências externas
 - Identificadores autodescritivos
 - Correlação entre serviços
-
-</td>
-</tr>
-</table>
 
 ### 6.3 Cenários Inadequados
 
