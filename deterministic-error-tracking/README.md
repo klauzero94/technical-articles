@@ -1,3 +1,5 @@
+<div style="background-color: #ffffff; color: #000000; padding: 20px;">
+
 # Engenharia Reversa de Códigos de Erro: Sistema Determinístico para Rastreamento de Origem
 
 ## Resumo
@@ -205,7 +207,6 @@ graph TD
 ### 5.1 Mapa Conceitual de Limitações
 
 ```mermaid
-%%{init: {'mindmap': {'theme': 'neutral', 'themeVariables': {'primaryColor': '#f9f9f9', 'primaryTextColor': '#333333', 'primaryBorderColor': '#cccccc', 'lineColor': '#666666', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#e8e8e8'}}}}%%
 mindmap
   root((Limitações))
     Técnicas
@@ -459,3 +460,5 @@ A convergência entre simplicidade, eficiência e determinismo posiciona esta me
 ---
 
 **Autor:** Pablo Perozini de Pra
+
+</div>
